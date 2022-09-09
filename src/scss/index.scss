@@ -1,3 +1,91 @@
-body {
-  color: aqua;
+body,
+html,
+ul,
+li,
+h1 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.container {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  background-color: #9DBEBB;
+  padding: 20px 0;
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #565264;
+  padding: 20px;
+  color: white;
+  border-radius: 8px;
+  border-left: 6px solid transparent;
+}
+
+.card--sending {
+  border-color: #EA3546;
+}
+.card--receiving {
+  border-color: #43BCCD;
+}
+
+.row {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: none;
+  color: #D6CFCB;
+  border-radius: 4px;
+}
+
+.button--primary {
+  background-color: #A6808C;
+}
+
+.button--secondary {
+  background-color: #60AB9A;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000099;
+}
+
+.modal__content {
+  width: 500px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: white;
 }
