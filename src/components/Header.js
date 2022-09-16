@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -24,10 +23,6 @@ const Header = ({ balance }) => {
       </div>
     </header>
   );
-};
-
-Header.propTypes = {
-  balance: PropTypes.number.isRequired,
 };
 
 export default Header;

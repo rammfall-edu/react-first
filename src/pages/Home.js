@@ -1,21 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Card from '../components/Card';
 import Button from '../components/Button';
 import Modal from '../components/Modal';
-import { data } from '../constants';
+import Spinner from '../components/Spinner';
 
-const Home = () => {
+const Home = ({ balance, needUpdateBalance }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [transactions, setTransactions] = useState(data);
+  const [isLoading, setIsLoading] = useState(true);
+  const [transactions, setTransactions] = useState([]);
 
   function closeModal() {
     setIsOpen(false);
   }
 
+  function createTransaction(transaction) {
+    setTransactions((prevState) => {
+      return [...prevState, transaction];
+    });
+  }
+
+  useEffect(() => {
+    fetch(
+      'https://bank-api-transactions.herokuapp.com/api/transactions'
+    )
+      .then((data) => data.json())
+      .then((data) => {
+        setTransactions(Object.values(data));
+        setIsLoading(false);
+      });
+  }, []);
+
   const components = transactions.map(
-    ({ isSending, amount, date, message, id }) => {
+    ({ type, amount, date, description, id }) => {
       const handleDelete = () => {
         setTransactions((prevState) => {
           return prevState.filter(
@@ -29,9 +47,9 @@ const Home = () => {
           <Link to={`/transaction/${id}`}>
             <Card
               date={date}
-              isSending={isSending}
+              isSending={type === 'Sending'}
               amount={amount}
-              message={message}
+              message={description}
             />
           </Link>
           <button onClick={handleDelete}>x</button>
@@ -47,24 +65,22 @@ const Home = () => {
           <h1>Transactions:</h1>
           <Button
             onClick={() => {
-              setTransactions((prevState) => {
-                const transaction = {
-                  isSending: false,
-                  amount: 452,
-                  date: '2030-09-45',
-                  message: 'Top up money',
-                  id: Math.random(),
-                };
-                return [transaction, ...prevState];
-              });
+              setIsOpen(true);
             }}
           >
             New transaction
           </Button>
         </div>
-        <ul>{components}</ul>
+        {isLoading ? <Spinner /> : <ul>{components}</ul>}
       </div>
-      {isOpen && <Modal handleCloseModal={closeModal} />}
+      {isOpen && (
+        <Modal
+          needUpdateBalance={needUpdateBalance}
+          createTransaction={createTransaction}
+          handleCloseModal={closeModal}
+          balance={balance}
+        />
+      )}
     </main>
   );
 };
