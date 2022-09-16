@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 const Header = ({ balance }) => {
   return (
     <header>
@@ -9,6 +11,16 @@ const Header = ({ balance }) => {
           BankID
         </a>
         <p>Balance: ${balance}</p>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
   );

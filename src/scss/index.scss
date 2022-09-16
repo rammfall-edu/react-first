@@ -89,3 +89,17 @@ ul {
   border-radius: 20px;
   background-color: white;
 }
+
+.accordion {
+  background-color: #43BCCD;
+  margin-bottom: 15px;
+}
+
+.accordion__head {
+  padding: 10px;
+  border-bottom: 1px solid #EA3546;
+}
+
+.accordion__body {
+  padding: 10px;
+}
