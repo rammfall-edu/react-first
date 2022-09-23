@@ -1,3 +1,23 @@
+:root {
+  --color-secondary: #9DBEBB;
+  --color-primary: #565264;
+  --color-text: white;
+  --color-accent: #EA3546;
+  --color-accent-100: #A6808C;
+  --color-success: #43BCCD;
+  --color-success-100: #60AB9A;
+}
+
+.dark {
+  --color-secondary: #54577C;
+  --color-primary: #ECFFB0;
+  --color-text: #4A7B9D;
+  --color-accent: #FF84E8;
+  --color-accent-100: #FFA9E7;
+  --color-success: #7F2CCB;
+  --color-success-100: #414361;
+}
+
 body,
 html,
 ul,
@@ -8,6 +28,10 @@ h1 {
   list-style: none;
 }
 
+body {
+  background-color: var(--color-text);
+}
+
 .container {
   width: 80%;
   margin-left: auto;
@@ -15,7 +39,7 @@ h1 {
 }
 
 header {
-  background-color: #9DBEBB;
+  background-color: var(--color-secondary);
   padding: 20px 0;
 
   > div {
@@ -33,18 +57,19 @@ ul {
 }
 
 .card {
-  background-color: #565264;
+  background-color: var(--color-primary);
   padding: 20px;
-  color: white;
+  color: var(--color-text);
   border-radius: 8px;
   border-left: 6px solid transparent;
 }
 
 .card--sending {
-  border-color: #EA3546;
+  border-color: var(--color-accent);
 }
+
 .card--receiving {
-  border-color: #43BCCD;
+  border-color: var(--color-success);
 }
 
 .row {
@@ -58,16 +83,16 @@ ul {
   text-transform: uppercase;
   padding: 4px 10px;
   border: none;
-  color: #D6CFCB;
+  color: var(--color-text);
   border-radius: 4px;
 }
 
 .button--primary {
-  background-color: #A6808C;
+  background-color: var(--color-accent-100);
 }
 
 .button--secondary {
-  background-color: #60AB9A;
+  background-color: var(--color-success-100);
 }
 
 .modal {

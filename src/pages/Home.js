@@ -5,11 +5,13 @@ import Card from '../components/Card';
 import Button from '../components/Button';
 import Modal from '../components/Modal';
 import Spinner from '../components/Spinner';
+import { useDictionary } from '../hooks/useDictionary';
 
 const Home = ({ balance, needUpdateBalance }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [transactions, setTransactions] = useState([]);
+  const translate = useDictionary();
 
   function closeModal() {
     setIsOpen(false);
@@ -62,13 +64,13 @@ const Home = ({ balance, needUpdateBalance }) => {
     <main>
       <div className="container">
         <div className="row">
-          <h1>Transactions:</h1>
+          <h1>{translate('transactions.title')}:</h1>
           <Button
             onClick={() => {
               setIsOpen(true);
             }}
           >
-            New transaction
+            {translate('transactions.new')}
           </Button>
         </div>
         {isLoading ? <Spinner /> : <ul>{components}</ul>}
